@@ -13,7 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/sign-in.css">
 </head>
 
-<body>
+
+<body>	
 	<header id="site-header" class="w3l-header fixed-top">
 		<!--/nav-->
 		<nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
@@ -51,15 +52,17 @@
 		<div class="form-container sign-up-container">
 			<form name="sign-up-form" action="#" onsubmit="return signUpValidateForm()">
 				<h1>Create Account</h1>
-				<div class="social-container">
+				<!-- <div class="social-container">
 					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 					<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 				</div>
-				<span>or use your email for registration</span>
+				<span>or use your email for registration</span> -->
 				<input name="sign-up-name" type="text" placeholder="Name" />
 				<input name="sign-up-email" type="email" placeholder="Email" />
 				<input name="sign-up-passwd" type="password" placeholder="Password" />
+				<input name="sign-up-passwd" type="password" placeholder="Confirm Password" />
+				
 				<button>Sign Up</button>
 			</form>
 		</div>
@@ -67,18 +70,13 @@
 			<form name="sign-in-form" style="color: var(--theme-title);" action="#"
 				onsubmit="return signInValidateForm()">
 				<h1>Sign in</h1>
-				<div class="social-container">
-					<a href="#" class="social" style="color: var(--theme-title);"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social" style="color: var(--theme-title);"><i
-							class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social" style="color: var(--theme-title);"><i class="fab fa-linkedin-in"></i></a>
-				</div>
-				<span>or use your account</span>
 				<input name="sign-in-email" type="email" placeholder="Email" />
 				<input name="sign-in-passwd" type="password" placeholder="Password" />
-				<a href="#">Forgot your password?</a>
+				<!-- Updated Forgot Password link -->
+				<a href="" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Forgot your password?</a>
 				<button>Sign In</button>
 			</form>
+
 		</div>
 		<div class="overlay-container">
 			<div class="overlay">
@@ -95,6 +93,31 @@
 			</div>
 		</div>
 	</div>
+	<!-- Forgot Password Modal -->
+			<div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+			<div class="modal-dialog" style="width: 300px;">
+			<div class="modal-content text-center">
+				<div class="modal-header h5 text-white bg-primary justify-content-center">
+					Password Reset
+				</div>
+				<div class="modal-body px-5">
+					<p class="py-2">
+						Enter your email address and we'll send you an email with instructions to reset your password.
+					</p>
+					<div data-mdb-input-init class="form-outline">
+						<input type="email" id="typeEmail" class="form-control my-3" />
+						<label class="form-label" for="typeEmail">Email input</label>
+					</div>
+					<a href="#" data-mdb-ripple-init class="btn btn-primary w-100">Reset password</a>
+					<div class="d-flex justify-content-between mt-4">
+						<a class="" href="#">Login</a>
+						<a class="" href="#">Register</a>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
 
 	<script type="text/javascript" src="assets/js/as-alert-message.min.js"></script>
 	<script src="assets/js/jquery-3.3.1.min.js"></script>
