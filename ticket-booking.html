@@ -16,6 +16,96 @@
 
   <link rel="stylesheet" type="text/css" href="assets/css/payment.css" />
   <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700" rel="stylesheet">
+  <style>
+    #theater-select-div {
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #screen-select-div {
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    select.theater-select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    .carousel-nav {
+      margin-top: 20px;
+    }
+
+    .carousel-cell {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .time-ul {
+      margin-top: 30px;
+    }
+
+    .time-li {
+      margin-bottom: 20px;
+    }
+
+    .screens {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .time-btn button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .time-btn button:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    #screen-next-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #screen-next-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
 
 <body>
@@ -60,12 +150,27 @@
         <div class="px-0 pt-4 pb-0 mt-3 mb-3">
           <form id="form">
             <ul id="progressbar" class="progressbar-class">
-              <li class="active" id="step1">Show timing selection</li>
+              <li class="active" id="step1">Show Theatre / Timing selection</li>
               <li id="step2" class="not_active">Seat Selection</li>
               <li id="step3" class="not_active">Payment</li>
               <li id="step4" class="not_active">E-Ticket</li>
             </ul>
             <br>
+             <!-- Theater Selection -->
+             <fieldset>
+              <h2>Select Theater</h2>
+              <div id="theater-select-div">
+                <label for="theater-dropdown">Choose a theater:</label>
+                <select id="theater-dropdown" class="theater-select" onchange="enableNextBtn()">
+                  <option value="default" disabled selected>Select a theater</option>
+                  <option value="theater1">PVR ICON | Pavilion Mall - Wadarvadi</option>
+                  <option value="theater2">City Pride - Kothrud</option>
+                  <option value="theater3">Abhiruchi City Pride - Vadgaon Budruk</option>
+                  <option value="theater4">INOX - Agarkar Nagar </option>
+                  <option value="theater5">Cinépolis - WestEnd Mall , Pune</option>
+                </select>
+              </div>
+              <br>
             <fieldset>
               <div id="screen-select-div">
                 <h2>Show time Selection</h2>
@@ -491,6 +596,25 @@
     document.getElementById(prevId).style.background = "rgb(243, 235, 235)";
     document.getElementById(id).style.background = "#df0e62";
     prevId = id;
+  }
+</script>
+<script>
+  // Enable the next button for theater selection
+  function enableNextBtn() {
+    const theaterDropdown = document.getElementById("theater-dropdown");
+    const nextBtn = document.getElementById("screen-next-btn");
+    
+    if (theaterDropdown.value !== "default") {
+      nextBtn.disabled = false;
+    }
+  }
+
+  // Prevent form submission and page refresh
+  function selectShowTime(event, time) {
+    event.preventDefault();
+    const nextBtn = document.getElementById("screen-next-btn");
+    nextBtn.disabled = false; // Enable the Continue Booking button when a time is selected
+    console.log('Show time selected:', time); // For debugging
   }
 </script>
 
